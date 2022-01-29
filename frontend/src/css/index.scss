@@ -1,0 +1,168 @@
+.heartIcon {
+  /* font-size: 88px !important; */
+  color: #f27474;
+}
+
+.clickable {
+  cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+}
+
+// 500, #616e7c
+// 50, #f5f7fa
+// 100, #e4e7eb
+// 200, #cbd2d9
+// 300, #9aa5b1
+// 400, #7b8794
+// 500, #616e7c
+// 600, #52606d
+// 700, #3e4c59
+// 800, #323f4b
+// 900, #1f2933
+
+$background-color-primary-dark: #1f2933;
+$background-color-secondary-dark: #323f4b;
+$text-primary-color-dark: #f5f7fa;
+$text-secondary-color-dark: #e4e7eb;
+$accent-color-dark: #616e7c;
+
+$background-color-primary-light: #f5f7fa;
+$background-color-secondary-light: #e4e7eb;
+$text-primary-color-light: #1f2933;
+$text-secondary-color-light: #323f4b;
+$accent-color-light: #f5f7fa;
+
+$element-size: 2.7rem;
+
+:root.dark-theme {
+  --toastify-color-light: #{$background-color-secondary-dark};
+  --toastify-text-color-light: #{$text-primary-color-dark};
+
+  // --toastify-icon-color-success: red;
+
+  --background-color-primary: #{$background-color-primary-dark};
+  --background-color-secondary: #{$background-color-secondary-dark};
+  --text-primary-color: #{$text-primary-color-dark};
+  --text-secondary-color: #{$text-secondary-color-dark};
+  --accent-color: #{$accent-color-dark};
+  input[type="search"]::-webkit-search-cancel-button,
+  .btn-close {
+    filter: invert(1);
+  }
+}
+
+:root {
+  --toastify-color-light: #{$background-color-primary-dark};
+  --toastify-text-color-light: #{$text-primary-color-dark};
+
+  // --toastify-toast-background: #{$background-color-primary-light};
+  --background-color-primary: #{$background-color-primary-light};
+  --background-color-secondary: #{$background-color-secondary-light};
+  --text-primary-color: #{$text-primary-color-light};
+  --text-secondary-color: #{$text-secondary-color-light};
+  --element-size: #{$element-size};
+  --accent-color: #{$accent-color-light};
+  input[type="search"]::-webkit-search-cancel-button,
+  .btn-clos {
+    filter: invert(0);
+  }
+}
+html,
+#root {
+  background-color: var(--background-color-primary);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+td,
+th,
+h1,
+h5,
+label,
+a,
+input,
+input::placeholder,
+.form-control::placeholder,
+select,
+.form-control {
+  color: var(--text-primary-color) !important;
+}
+a.active {
+  border-bottom: 1px solid var(--text-primary-color);
+}
+
+.list-group,
+li,
+.page-link,
+.button,
+.Toastify__close-button {
+  background-color: var(--background-color-secondary) !important;
+  color: var(--text-secondary-color) !important;
+}
+
+.list-group .active,
+.active .page-link,
+.button:hover,
+input,
+select,
+.form-control {
+  border-color: var(--text-secondary-color) !important;
+
+  background-color: var(--accent-color) !important;
+}
+
+.logout {
+  border: none !important;
+  padding-top: 0 !important;
+}
+.btn:focus,
+.btn-close:focus,
+input:focus,
+select:focus,
+.form-control:focus,
+.page-link:focus {
+  box-shadow: 1px 1px 10px $accent-color-dark !important;
+}
+
+tbody {
+  border-color: var(--background-color-secondary) !important;
+}
+
+.deleteButton,
+.customBadge {
+  background-color: #f27474 !important;
+  color: #f5f7fa !important;
+}
+
+tr {
+  border-color: var(--background-color-secondary) !important;
+}
+
+.darkIcons {
+  color: var(--background-color-secondary) !important;
+}
+
+.nav-link {
+  margin-right: 15px;
+  height: fit-content;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  position: relative;
+  -webkit-appearance: none;
+  height: 15px;
+  width: 10px;
+  background: url(times-solid.svg);
+}
+
+.modal-content {
+  background-color: var(--background-color-primary) !important;
+  color: var(--text-primary-color);
+}

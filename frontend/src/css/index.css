@@ -1,0 +1,195 @@
+.heartIcon {
+  /* font-size: 88px !important; */
+  color: #f27474;
+}
+
+.clickable {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+}
+
+:root.dark-theme {
+  --toastify-color-light: #323f4b;
+  --toastify-text-color-light: #f5f7fa;
+  --background-color-primary: #1f2933;
+  --background-color-secondary: #323f4b;
+  --text-primary-color: #f5f7fa;
+  --text-secondary-color: #e4e7eb;
+  --accent-color: #616e7c;
+}
+
+:root.dark-theme input[type="search"]::-webkit-search-cancel-button,
+:root.dark-theme .btn-close {
+  -webkit-filter: invert(1);
+          filter: invert(1);
+}
+
+:root {
+  --toastify-color-light: #1f2933;
+  --toastify-text-color-light: #f5f7fa;
+  --background-color-primary: #f5f7fa;
+  --background-color-secondary: #e4e7eb;
+  --text-primary-color: #1f2933;
+  --text-secondary-color: #323f4b;
+  --element-size: 2.7rem;
+  --accent-color: #f5f7fa;
+}
+
+:root input[type="search"]::-webkit-search-cancel-button,
+:root .btn-clos {
+  -webkit-filter: invert(0);
+          filter: invert(0);
+}
+
+html,
+#root {
+  background-color: var(--background-color-primary);
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+td,
+th,
+h1,
+h5,
+label,
+a,
+input,
+input::-webkit-input-placeholder,
+.form-control::-webkit-input-placeholder,
+select,
+.form-control {
+  color: var(--text-primary-color) !important;
+}
+
+td,
+th,
+h1,
+h5,
+label,
+a,
+input,
+input:-ms-input-placeholder,
+.form-control:-ms-input-placeholder,
+select,
+.form-control {
+  color: var(--text-primary-color) !important;
+}
+
+td,
+th,
+h1,
+h5,
+label,
+a,
+input,
+input::-ms-input-placeholder,
+.form-control::-ms-input-placeholder,
+select,
+.form-control {
+  color: var(--text-primary-color) !important;
+}
+
+td,
+th,
+h1,
+h5,
+label,
+a,
+input,
+input::placeholder,
+.form-control::placeholder,
+select,
+.form-control {
+  color: var(--text-primary-color) !important;
+}
+
+a.active {
+  border-bottom: 1px solid var(--text-primary-color);
+}
+
+.list-group,
+li,
+.page-link,
+.button,
+.Toastify__close-button {
+  background-color: var(--background-color-secondary) !important;
+  color: var(--text-secondary-color) !important;
+}
+
+.list-group .active,
+.active .page-link,
+.button:hover,
+input,
+select,
+.form-control {
+  border-color: var(--text-secondary-color) !important;
+  background-color: var(--accent-color) !important;
+}
+
+.logout {
+  border: none !important;
+  padding-top: 0 !important;
+}
+
+.btn:focus,
+.btn-close:focus,
+input:focus,
+select:focus,
+.form-control:focus,
+.page-link:focus {
+  -webkit-box-shadow: 1px 1px 10px #616e7c !important;
+          box-shadow: 1px 1px 10px #616e7c !important;
+}
+
+tbody {
+  border-color: var(--background-color-secondary) !important;
+}
+
+.deleteButton,
+.customBadge {
+  background-color: #f27474 !important;
+  color: #f5f7fa !important;
+}
+
+tr {
+  border-color: var(--background-color-secondary) !important;
+}
+
+.darkIcons {
+  color: var(--background-color-secondary) !important;
+}
+
+.nav-link {
+  margin-right: 15px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  position: relative;
+  -webkit-appearance: none;
+  height: 15px;
+  width: 10px;
+  background: url(times-solid.svg);
+}
+
+.modal-content {
+  background-color: var(--background-color-primary) !important;
+  color: var(--text-primary-color);
+}
+/*# sourceMappingURL=index.css.map */
