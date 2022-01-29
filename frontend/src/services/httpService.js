@@ -5,6 +5,8 @@ const token = localStorage.getItem("token");
 
 if (token) axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
+axios.defaults.baseURL = process.env.REACT_APP_URL_BACKEND;
+
 axios.interceptors.response.use(null, (error) => {
   const expectedError =
     error.response &&
@@ -18,9 +20,10 @@ axios.interceptors.response.use(null, (error) => {
   return Promise.reject(error);
 });
 
-export default {
+const axiosMethods = {
   get: axios.get,
   post: axios.post,
   put: axios.put,
   delete: axios.delete,
 };
+export default axiosMethods;

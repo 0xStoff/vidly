@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import FormComponent from "../components/common/form";
 import { schemaUser } from "../config.schema";
 import { register } from "../services/userService";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import jwtDecode from "jwt-decode";
+// import { useNavigate } from "react-router-dom";
 import { login } from "../services/authService";
 
 const RegisterForm = () => {
@@ -15,7 +14,7 @@ const RegisterForm = () => {
   });
   const [errors, setErrors] = useState({});
   const states = { data, setData, errors, setErrors };
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const doSubmit = async () => {
     try {

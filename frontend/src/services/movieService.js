@@ -1,9 +1,7 @@
 import httpService from "./httpService";
 import { toast } from "react-toastify";
-import config from "../config.json";
 
-const { apiUrl } = config;
-const apiEndpoint = `${apiUrl}/movies`;
+const apiEndpoint = `/movies`;
 
 function getUrl(id) {
   return `${apiEndpoint}/${id}`;
@@ -54,7 +52,6 @@ async function onMovieLike(movie) {
 }
 
 export async function getGenres() {
-  const { apiUrl } = config;
   const { data: movies } = await httpService.get(apiEndpoint);
 
   const genres = movies.data.map((movie) => movie.attributes.genre);

@@ -1,7 +1,5 @@
-import config from "../config.json";
 import httpService from "./httpService";
-const { apiUrl } = config;
-const apiEndpoint = `${apiUrl}/auth/local`;
+const apiEndpoint = `/auth/local`;
 
 export async function login(data) {
   const {
