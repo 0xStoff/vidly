@@ -11,6 +11,10 @@ const MoviesTable = ({
   onSort,
   user,
 }) => {
+  const isAuthUser = (movie, loggedIn, notloggedIn) => {
+    return user && movie.createdBy.id == user.id ? loggedIn : notloggedIn;
+  };
+
   const isLoggedIn = (loggedIn, notloggedIn) => {
     return user ? loggedIn : notloggedIn;
   };
@@ -19,27 +23,38 @@ const MoviesTable = ({
     {
       path: "title",
       label: "Title",
-      content: (movie) =>
-        isLoggedIn(
+      content: (movie) => {
+        return isAuthUser(
+          movie,
           <Link to={`/movies/${movie._id}`}>{movie.title}</Link>,
           movie.title
-        ),
+        );
+      },
     },
     { path: "genre.name", label: "Genre" },
     { path: "numberInStock", label: "Stock" },
     { path: "dailyRentalRate", label: "Rate" },
     {
+      path: "createdBy.username",
+      label: "by",
+    },
+    {
       key: "like",
       content: (movie) =>
         isLoggedIn(
-          <Like liked={movie.liked} onClick={() => onLike(movie)} />,
-          <Like liked={movie.liked} />
+          <Like
+            likes={movie.likes}
+            liked={movie.liked}
+            onClick={() => onLike(movie)}
+          />,
+          <Like likes={movie.likes} liked={movie.liked} />
         ),
     },
     {
       key: "delete",
       content: (movie) =>
-        isLoggedIn(
+        isAuthUser(
+          movie,
           <button
             className="btn btn-sm deleteButton"
             onClick={() => {
@@ -55,21 +70,13 @@ const MoviesTable = ({
     },
   ];
 
-  return isLoggedIn(
+  return (
     <Table
       columns={columns}
       data={movies}
       sortColumn={sortColumn}
       onSort={onSort}
-    />,
-    <React.Fragment>
-      <Table
-        columns={columns}
-        data={movies}
-        sortColumn={sortColumn}
-        onSort={onSort}
-      />
-    </React.Fragment>
+    />
   );
 };
 

@@ -8,7 +8,7 @@ export const schemaMovie = {
   dailyRentalRate: Joi.number().min(0).max(10).required(),
   createdAt: Joi.string(),
   description: Joi.string().required(),
-  liked: Joi.bool(),
+  // likes: Joi.isArray(),
   publishedAt: Joi.string(),
   updatedAt: Joi.string(),
 };

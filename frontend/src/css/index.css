@@ -61,6 +61,12 @@ html,
           box-sizing: border-box;
 }
 
+.like {
+  width: 10px;
+  color: var(--text-primary-color);
+  font-size: 10px;
+}
+
 td,
 th,
 h1,
@@ -71,7 +77,8 @@ input,
 input::-webkit-input-placeholder,
 .form-control::-webkit-input-placeholder,
 select,
-.form-control {
+.form-control,
+.text {
   color: var(--text-primary-color) !important;
 }
 
@@ -85,7 +92,8 @@ input,
 input:-ms-input-placeholder,
 .form-control:-ms-input-placeholder,
 select,
-.form-control {
+.form-control,
+.text {
   color: var(--text-primary-color) !important;
 }
 
@@ -99,7 +107,8 @@ input,
 input::-ms-input-placeholder,
 .form-control::-ms-input-placeholder,
 select,
-.form-control {
+.form-control,
+.text {
   color: var(--text-primary-color) !important;
 }
 
@@ -113,7 +122,8 @@ input,
 input::placeholder,
 .form-control::placeholder,
 select,
-.form-control {
+.form-control,
+.text {
   color: var(--text-primary-color) !important;
 }
 
@@ -173,6 +183,16 @@ tr {
   color: var(--background-color-secondary) !important;
 }
 
+.card-body p,
+.aboutLink {
+  color: var(--text-primary-color) !important;
+  margin: 3px;
+}
+
+.card {
+  background-color: var(--background-color-secondary) !important;
+}
+
 .nav-link {
   margin-right: 15px;
   height: -webkit-fit-content;
@@ -190,6 +210,10 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .modal-content {
   background-color: var(--background-color-primary) !important;
+  color: var(--text-primary-color);
+}
+
+.divider {
   color: var(--text-primary-color);
 }
 /*# sourceMappingURL=index.css.map */

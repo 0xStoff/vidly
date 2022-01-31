@@ -81,6 +81,12 @@ html,
   box-sizing: border-box;
 }
 
+.like {
+  width: 10px;
+  color: var(--text-primary-color);
+  font-size: 10px;
+}
+
 td,
 th,
 h1,
@@ -91,9 +97,11 @@ input,
 input::placeholder,
 .form-control::placeholder,
 select,
-.form-control {
+.form-control,
+.text {
   color: var(--text-primary-color) !important;
 }
+
 a.active {
   border-bottom: 1px solid var(--text-primary-color);
 }
@@ -149,6 +157,15 @@ tr {
   color: var(--background-color-secondary) !important;
 }
 
+.card-body p,
+.aboutLink {
+  color: var(--text-primary-color) !important;
+  margin: 3px;
+}
+.card {
+  background-color: var(--background-color-secondary) !important;
+}
+
 .nav-link {
   margin-right: 15px;
   height: fit-content;
@@ -166,3 +183,13 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: var(--background-color-primary) !important;
   color: var(--text-primary-color);
 }
+
+.divider {
+  color: var(--text-primary-color);
+}
+
+// .card tr {
+//   border-bottom: 0.1px solid var(--text-secondary-color) !important;
+//   // color: red !important;
+//   // border-color: red !important;
+// }

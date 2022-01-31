@@ -10,6 +10,7 @@ const FormComponent = (props) => {
 
   const validate = () => {
     const options = { abortEarly: false };
+
     const { error } = Joi.validate(data, schema, options);
     const errorsObj = {};
 
@@ -54,7 +55,6 @@ const FormComponent = (props) => {
   };
 
   const renderButton = (label) => {
-    // console.log(validate());
     return (
       <button disabled={validate()} className="btn button" type="submit">
         {label}

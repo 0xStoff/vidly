@@ -1,6 +1,7 @@
 import httpService from "./httpService";
 import { toast } from "react-toastify";
-
+import axios from "axios";
+import { getCurrentUser } from "./authService";
 const apiEndpoint = `/movies`;
 
 function getUrl(id) {
@@ -39,13 +40,26 @@ async function removeMovie(id) {
 
 async function onMovieLike(movie) {
   try {
+    const likedMovies = [...movie.likes];
+    const user = getCurrentUser();
+
+    const index = likedMovies.indexOf(user.id);
+    let isLiked = likedMovies.find((id) => id == user.id);
+
+    if (!isLiked) likedMovies.push(user.id);
+    if (isLiked) {
+      if (index !== -1) {
+        likedMovies.splice(index, 1);
+      }
+    }
+
     const data = {
       data: {
-        liked: movie.liked,
+        likes: likedMovies,
       },
     };
+
     await httpService.put(getUrl(movie._id), data);
-    console.log(data);
   } catch (err) {
     throw err;
   }
@@ -64,7 +78,10 @@ export async function getMovies() {
   let movies = [];
 
   try {
-    const { data: moviesData } = await httpService.get(apiEndpoint);
+    const { data: moviesData } = await httpService.get(
+      `${apiEndpoint}?populate=*`
+    );
+
     const allMovies = moviesData.data.map((movie) => movie.attributes);
     const movieIds = moviesData.data.map((movie) => movie.id);
 
@@ -75,7 +92,11 @@ export async function getMovies() {
         genre: { name: allMovies[i].genre, _id: "555" },
         numberInStock: allMovies[i].numberInStock,
         dailyRentalRate: allMovies[i].dailyRentalRate,
-        liked: allMovies[i].liked,
+        likes: allMovies[i].likes.data.map((d) => d.id),
+        createdBy: {
+          id: allMovies[i].user.data.id,
+          username: allMovies[i].user.data.attributes.username,
+        },
       };
     }
   } catch (err) {
@@ -86,7 +107,7 @@ export async function getMovies() {
 
 export async function getMovie(id) {
   try {
-    const { data: movie } = await httpService.get(getUrl(id));
+    const { data: movie } = await httpService.get(getUrl(id) + "?populate=*");
     const details = movie.data.attributes;
     return details;
   } catch (err) {
@@ -102,10 +123,60 @@ export function saveMovie(movie, id) {
   }
 }
 
-export function likeMovie(id) {
-  onMovieLike(id);
+export async function likeMovie(movie) {
+  await onMovieLike(movie);
+  const response = await getMovies();
+
+  return response;
 }
 
 export function deleteMovie(id) {
   removeMovie(id);
 }
+
+// const moviesLiked = [...movie.likes];
+// const moviesLiked = likes;
+// let isLiked = moviesLiked.find((id) => id == user.id);
+// if (!isLiked) isLiked = 0;
+// console.log(movie.likes);
+// const test = movie.likes.map((id) => id);
+// console.log(movie.likes);
+// console.log(test);
+// let likes;
+
+// for (let i = 0; i < moviesLiked.length; i++) {
+//   likes = {
+//     id: moviesLiked[i],
+//   };
+// }
+// if (!isLiked) moviesLiked.push(user.id);
+// if (isLiked) moviesLiked.splice(1);
+
+// if (likes) {
+//   data = {
+//     data: {
+//       likes: [likes, { id: user.id }],
+//     },
+//   };
+// } else {
+//   if (!data)
+//     data = {
+//       data: {
+//         likes: [{ id: user.id }],
+//       },
+//     };
+// }
+
+// console.log(data);
+
+// const data = !isLiked
+//   ? {
+//       data: {
+//         likes: movie,
+//       },
+//     }
+//   : {
+//       data: {
+//         likes: [],
+//       },
+//     };

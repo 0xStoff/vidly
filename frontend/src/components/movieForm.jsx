@@ -4,6 +4,7 @@ import FormComponent from "./common/form";
 import { Container } from "react-bootstrap";
 import { saveMovie, getMovie, getGenres } from "../services/movieService";
 import { schemaMovie } from "../config.schema";
+import { getCurrentUser } from "../services/authService";
 
 const AddMovie = () => {
   const { id } = useParams();
@@ -18,6 +19,8 @@ const AddMovie = () => {
 
   const [genres, setGenres] = useState([]);
 
+  const user = getCurrentUser();
+
   useEffect(() => {
     getMovieById();
   }, []);
@@ -26,6 +29,9 @@ const AddMovie = () => {
     try {
       if (id) {
         const movie = await getMovie(id);
+        if (user.id != movie.user.data.id) navigate("/not-found");
+        delete movie.user;
+        delete movie.likes;
         setData(() => movie);
       }
     } catch (err) {
@@ -49,6 +55,9 @@ const AddMovie = () => {
         numberInStock: inputs["numberInStock"].value,
         dailyRentalRate: inputs["dailyRentalRate"].value,
         liked: false,
+        user: {
+          id: user.id,
+        },
       },
     };
     saveMovie(movie, id);
@@ -56,7 +65,7 @@ const AddMovie = () => {
   };
 
   const { title, genre, dailyRentalRate, numberInStock, description } = data;
-  // console.log(data);
+
   let rentalRate = "";
   if (!isNaN(dailyRentalRate)) {
     rentalRate = dailyRentalRate;

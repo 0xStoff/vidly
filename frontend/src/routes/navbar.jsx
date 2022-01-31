@@ -1,7 +1,7 @@
 import { useNavigate, NavLink, Outlet } from "react-router-dom";
 import React, { useState } from "react";
 import { Navbar, Container, Nav, Modal, Button } from "react-bootstrap";
-import DarkMode from "../components/common/darkMode";
+// import DarkMode from "../components/common/darkMode";
 
 /* Navigation-Links with different paths */
 const NavbarComponent = ({ user }) => {
@@ -72,7 +72,7 @@ const NavbarComponent = ({ user }) => {
             </React.Fragment>
           )}
         </Nav>
-        <DarkMode />
+        {/* <DarkMode /> */}
       </Container>
       <Outlet />
     </Navbar>
