@@ -69,7 +69,7 @@ const DarkMode = () => {
       };
       setTheme("light-theme");
     }
-    await httpService.put(`http://localhost:1337/api/users/${user.id}`, data);
+    await httpService.put(`/users/${user.id}`, data);
   };
 
   const setTheme = (theme) => {
