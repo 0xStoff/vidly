@@ -94,8 +94,10 @@ export async function getMovies() {
         dailyRentalRate: allMovies[i].dailyRentalRate,
         likes: allMovies[i].likes.data.map((d) => d.id),
         createdBy: {
-          id: allMovies[i].user.data.id,
-          username: allMovies[i].user.data.attributes.username,
+          id: allMovies[i].user.data ? allMovies[i].user.data.id : null,
+          username: allMovies[i].user.data
+            ? allMovies[i].user.data.attributes.username
+            : null,
         },
       };
     }
