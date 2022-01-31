@@ -116,7 +116,7 @@ const AboutMe = ({ user }) => {
           </Card>
         </Col>
       </Row>
-      <h1>Settings</h1>
+      <h1 className="mt-5">Settings</h1>
       <DarkMode />
     </Container>
   );
