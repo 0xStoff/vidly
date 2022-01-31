@@ -38,6 +38,7 @@ const FormComponent = (props) => {
   };
 
   const handleChange = ({ target: input }) => {
+    // window.onbeforeunload = () => 1;
     const errorsObj = { ...errors };
     const errorMessage = validateProperty(input);
     if (errorMessage) errorsObj[input.name] = errorMessage;

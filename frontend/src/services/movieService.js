@@ -1,6 +1,5 @@
 import httpService from "./httpService";
 import { toast } from "react-toastify";
-import axios from "axios";
 import { getCurrentUser } from "./authService";
 const apiEndpoint = `/movies`;
 
@@ -40,25 +39,25 @@ async function removeMovie(id) {
 
 async function onMovieLike(movie) {
   try {
-    const likedMovies = [...movie.likes];
-    const user = getCurrentUser();
+    // const likedMovies = [...movie.likes];
+    // const user = getCurrentUser();
 
-    const index = likedMovies.indexOf(user.id);
-    let isLiked = likedMovies.find((id) => id == user.id);
+    // const index = likedMovies.indexOf(user.id);
+    // let isLiked = likedMovies.find((id) => id == user.id);
 
-    if (!isLiked) likedMovies.push(user.id);
-    if (isLiked) {
-      if (index !== -1) {
-        likedMovies.splice(index, 1);
-      }
-    }
+    // if (isLiked) likedMovies.push(user.id);
+    // if (!isLiked) {
+    //   if (index !== -1) {
+    //     likedMovies.splice(index, 1);
+    //   }
+    // }
 
     const data = {
       data: {
-        likes: likedMovies,
+        likes: movie.likes,
       },
     };
-
+    // console.log(likedMovies);
     await httpService.put(getUrl(movie._id), data);
   } catch (err) {
     throw err;
@@ -136,49 +135,18 @@ export function deleteMovie(id) {
   removeMovie(id);
 }
 
-// const moviesLiked = [...movie.likes];
-// const moviesLiked = likes;
-// let isLiked = moviesLiked.find((id) => id == user.id);
-// if (!isLiked) isLiked = 0;
-// console.log(movie.likes);
-// const test = movie.likes.map((id) => id);
-// console.log(movie.likes);
-// console.log(test);
-// let likes;
+export function setLikeByUser(user, movie, movies) {
+  let likedMovies = [...movie.likes];
+  const index = likedMovies.indexOf(user.id);
+  let isLiked = likedMovies.find((id) => id == user.id);
+  if (!isLiked) likedMovies.push(user.id);
+  else {
+    likedMovies.splice(index, 1);
+  }
 
-// for (let i = 0; i < moviesLiked.length; i++) {
-//   likes = {
-//     id: moviesLiked[i],
-//   };
-// }
-// if (!isLiked) moviesLiked.push(user.id);
-// if (isLiked) moviesLiked.splice(1);
+  let allMovies = [...movies];
+  const movieIndex = allMovies.indexOf(movie);
+  allMovies[movieIndex].likes = likedMovies;
 
-// if (likes) {
-//   data = {
-//     data: {
-//       likes: [likes, { id: user.id }],
-//     },
-//   };
-// } else {
-//   if (!data)
-//     data = {
-//       data: {
-//         likes: [{ id: user.id }],
-//       },
-//     };
-// }
-
-// console.log(data);
-
-// const data = !isLiked
-//   ? {
-//       data: {
-//         likes: movie,
-//       },
-//     }
-//   : {
-//       data: {
-//         likes: [],
-//       },
-//     };
+  return allMovies;
+}

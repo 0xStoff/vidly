@@ -4,10 +4,12 @@ import {
   deleteMovie,
   getGenres,
   likeMovie,
+  setLikeByUser,
 } from "../services/movieService";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
 import MoviesSite from "../components/moviesSite";
+import { toast } from "react-toastify";
 
 const Movies = ({ user }) => {
   const [movies, setMovies] = useState([]);
@@ -22,115 +24,81 @@ const Movies = ({ user }) => {
   });
 
   useEffect(() => {
-    fetchGenre();
+    fetchMovies();
   }, []);
 
-  const fetchGenre = async () => {
+  const fetchMovies = async () => {
     const genreNames = await getGenres();
     const movies = await getMovies();
 
     genreNames.sort();
     genreNames.unshift("All Genres");
 
-    setGenres(() => genreNames);
-    setMovies(() => movies);
+    setGenres(genreNames);
+    setMovies(movies);
   };
 
   const handleDelete = (movie) => {
     const remainingMovies = movies.filter((m) => m._id !== movie._id);
-    setMovies(() => remainingMovies);
+    setMovies(remainingMovies);
     deleteMovie(movie._id);
   };
 
-  // const handleLike = async (movie) => {
-  //   const moviesLiked = [...movies];
-  //   const index = moviesLiked.indexOf(movie);
-  //   moviesLiked[index] = { ...moviesLiked[index] };
-
-  //   const test = moviesLiked[index].likes.length;
-  //   console.log(index);
-  //   // console.log(test);
-  //   // moviesLiked[index].likes.find((i) => i == index));
-  //   const likedMovies = [...movie.likes];
-
-  //   let isLiked = likedMovies.find((id) => id == user.id);
-
-  //   if (!isLiked) moviesLiked[index].likes.push(user.id);
-  //   if (isLiked) moviesLiked[index].likes.splice(1);
-
-  //   // console.log(isLiked);
-  //   // console.log(moviesLiked[index].likes);
-  //   // console.log(test.find(i=> i == index);
-  //   // if (moviesLiked[index].find((i) => i == index))
-  //   // moviesLiked[index].likes.push(index);
-  //   // moviesLiked[index].liked = !moviesLiked[index].liked;
-  //   // const id = 111;
-  //   // console.log(moviesLiked[index].likes);
-  //   setMovies(() => {
-  //     return moviesLiked;
-  //   });
-  //   // likeMovie(moviesLiked[index]);
-  // };
-
-  // const index = movie.indexOf(user.id);
-  // console.log(index);
-  // if (index !== -1) {
-  //   // console.log(likedMovies);
-  // }
   const handleLike = async (movie) => {
-    let likedMovies = [...movie.likes];
-    console.log(movie);
-    const index = likedMovies.indexOf(user.id);
-    // console.log(index);
-    let isLiked = likedMovies.find((id) => id == user.id);
+    const allMovies = setLikeByUser(user, movie, movies);
+    // let likedMovies = [...movie.likes];
+    // const index = likedMovies.indexOf(user.id);
+    // let isLiked = likedMovies.find((id) => id == user.id);
+    // if (!isLiked) likedMovies.push(user.id);
+    // else {
+    //   likedMovies.splice(index, 1);
+    // }
 
-    if (!isLiked) likedMovies.push(user.id);
-    if (isLiked) {
-      if (index !== -1) {
-        likedMovies.splice(index, 1);
-      }
+    // let allMovies = [...movies];
+    // const movieIndex = allMovies.indexOf(movie);
+    // allMovies[movieIndex].likes = likedMovies;
+
+    setMovies(allMovies);
+    try {
+      await likeMovie(movie);
+    } catch (err) {
+      toast.error("Movie has already been deleted");
+      throw err;
     }
-    // console.log(likedMovies);
-    const response = await likeMovie(movie);
-    setMovies(() => {
-      return response;
-    });
   };
 
   const handlePageChange = (page) => {
-    setCurrentPage(() => page);
+    setCurrentPage(page);
   };
 
   const handleFilterChange = async (name) => {
-    setSearchQuery(() => "");
+    setSearchQuery("");
 
     let filterMovies = await getMovies();
 
     if (name != "All Genres") {
       filterMovies = filterMovies.filter((movie) => movie.genre.name == name);
     }
-    setCurrentPage(() => 1);
-    setMovies(() => filterMovies);
-    setCurrentFilter(() => name);
+    setCurrentPage(1);
+    setMovies(filterMovies);
+    setCurrentFilter(name);
   };
 
   const handleSearch = async (query) => {
-    setCurrentFilter(() => "");
-    setSearchQuery(() => query);
+    setCurrentFilter("");
+    setSearchQuery(query);
 
     let filterMovies = await getMovies();
     filterMovies = filterMovies.filter((movie) =>
       movie.title.toLowerCase().startsWith(searchQuery.toLocaleLowerCase())
     );
     if (filterMovies.length == 0) return;
-    setCurrentPage(() => 1);
-    setMovies(() => filterMovies);
+    setCurrentPage(1);
+    setMovies(filterMovies);
   };
 
   const handleSort = (sort) => {
-    setSortColumn(() => {
-      return sort;
-    });
+    setSortColumn(sort);
   };
 
   const getPageData = () => {

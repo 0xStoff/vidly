@@ -9,7 +9,7 @@ const Select = ({ label, name, value, error, options, ...rest }) => {
   const [input, setInput] = useState(value);
 
   useEffect(() => {
-    setInput(() => value);
+    setInput(value);
   }, [value]);
   // console.log(input);
 
@@ -20,7 +20,7 @@ const Select = ({ label, name, value, error, options, ...rest }) => {
         name={name}
         value={input}
         onChange={(e) => {
-          setInput(() => e.target.value);
+          setInput(e.target.value);
         }}
       >
         <option>Select Genre</option>

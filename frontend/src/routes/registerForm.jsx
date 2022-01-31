@@ -34,7 +34,8 @@ const RegisterForm = () => {
         window.location = "/";
       }, 4000);
     } catch (err) {
-      setData(() => ({ email: "" }));
+      console.log("test");
+      setData({ email: "", password: "", username: "" });
       throw err;
     }
   };

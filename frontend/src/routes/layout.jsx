@@ -24,7 +24,7 @@ const Layout = () => {
   useEffect(() => {
     const user = getCurrentUser();
     // console.log(user);
-    setUser(() => user);
+    setUser(user);
   }, []);
 
   const getMediaPreference = () => {

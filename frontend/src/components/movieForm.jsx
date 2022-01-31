@@ -32,14 +32,14 @@ const AddMovie = () => {
         if (user.id != movie.user.data.id) navigate("/not-found");
         delete movie.user;
         delete movie.likes;
-        setData(() => movie);
+        setData(movie);
       }
     } catch (err) {
       return navigate("/not-found", "/movies");
     }
 
     const genres = await getGenres();
-    setGenres(() => genres);
+    setGenres(genres);
   };
 
   const [errors, setErrors] = useState({});
