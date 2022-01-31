@@ -24,10 +24,6 @@
       "type": "decimal",
       "required": true
     },
-    "liked": {
-      "type": "boolean",
-      "required": true
-    },
     "genre": {
       "type": "enumeration",
       "enum": [
@@ -41,6 +37,18 @@
     "description": {
       "type": "richtext",
       "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "movies"
+    },
+    "likes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "likes"
     }
   }
 }
