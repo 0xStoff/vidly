@@ -22,20 +22,26 @@ const Movies = ({ user }) => {
     path: "title",
     order: "asc",
   });
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
     fetchMovies();
   }, []);
 
   const fetchMovies = async () => {
-    const genreNames = await getGenres();
-    const movies = await getMovies();
+    try {
+      const genreNames = await getGenres();
+      const movies = await getMovies();
+      genreNames.sort();
+      genreNames.unshift("All Genres");
 
-    genreNames.sort();
-    genreNames.unshift("All Genres");
-
-    setGenres(genreNames);
-    setMovies(movies);
+      setGenres(genreNames);
+      setMovies(movies);
+      setLoader(false);
+    } catch (err) {
+      setLoader(false);
+      throw err;
+    }
   };
 
   const handleDelete = (movie) => {
@@ -127,6 +133,7 @@ const Movies = ({ user }) => {
       onSearch={handleSearch}
       searchQuery={searchQuery}
       user={user}
+      loader={loader}
     />
   );
 };

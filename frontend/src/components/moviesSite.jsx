@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Pagination from "./common/pagination";
 import FilterMovies from "./common/filter";
 import MoviesTable from "./moviesTable";
@@ -22,9 +22,9 @@ const MoviesSite = ({
   searchQuery,
   genres,
   user,
+  loader,
 }) => {
   const navigate = useNavigate();
-  // const user = getCurrentUser();
 
   return (
     <React.Fragment>
@@ -53,9 +53,13 @@ const MoviesSite = ({
             Add Movie
           </button>
           <br />
-          {!data.length ? (
+          {!data.length && loader && (
+            <div className="spinner-border m-5" role="status"></div>
+          )}
+          {!data.length && !loader && (
             <label className="w-75">There are no movies in the database</label>
-          ) : (
+          )}
+          {!data.length ? null : (
             <React.Fragment>
               <label>Showing {totalCount} movies in database</label>
               <MoviesTable
