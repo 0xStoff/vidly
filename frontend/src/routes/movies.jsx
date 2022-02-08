@@ -22,6 +22,7 @@ const Movies = ({ user }) => {
     path: "title",
     order: "asc",
   });
+
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {

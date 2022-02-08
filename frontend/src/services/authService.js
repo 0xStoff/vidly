@@ -2,6 +2,7 @@ import httpService from "./httpService";
 const apiEndpoint = `/auth/local`;
 
 export async function login(data) {
+  console.log(data);
   const {
     data: { jwt, user },
   } = await httpService.post(apiEndpoint, data);
