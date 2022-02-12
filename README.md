@@ -9,8 +9,7 @@ Differences from the course:
  - hosting
 
 
-You can register with a fakemail (no confirmation) or use the testuser:
-
+You can register with a fakemail (no confirmation) or use the testuser:<br/>
 email: test@github.com<br/>
 password: abc123
  
