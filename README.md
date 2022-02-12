@@ -8,4 +8,5 @@ Differences from the course:
  - strapi backend
  - hosting
  
-stoeff.xyz
+[stoeff.xyz
+](url)
