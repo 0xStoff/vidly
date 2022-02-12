@@ -1,6 +1,6 @@
 # vidly
 
-Vidly Movie App, learning concepts of React with React Course from codewithmosh.com. 
+Vidly Movie App, learning concepts of React with React Course from [codewithmosh.com](https://codewithmosh.com). 
 
 Differences from the course:
  - functional components instead of class components 
