@@ -9,4 +9,4 @@ Differences from the course:
  - hosting
  
 [stoeff.xyz
-](stoeff.xyz)
+](https://stoeff.xyz)
