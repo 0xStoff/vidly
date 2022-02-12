@@ -11,8 +11,7 @@ Differences from the course:
 
 You can register with a fakemail (no confirmation) or use the testuser:
 
-email: test@github.com
-
+email: test@github.com<br/>
 password: abc123
  
 > [stoeff.xyz
