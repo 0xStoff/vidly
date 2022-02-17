@@ -8,10 +8,3 @@ Differences from the course:
  - strapi backend
  - hosting
 
-
-You can register with a fakemail (no confirmation) or use the testuser:<br/>
-email: test@github.com<br/>
-password: abc123
- 
-> [stoeff.xyz
-](http://stoeff.xyz)
