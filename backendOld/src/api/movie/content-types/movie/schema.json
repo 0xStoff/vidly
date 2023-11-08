@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "movies",
+  "info": {
+    "singularName": "movie",
+    "pluralName": "movies",
+    "displayName": "Movie",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "numberInStock": {
+      "type": "integer",
+      "required": true
+    },
+    "dailyRentalRate": {
+      "type": "decimal",
+      "required": true
+    },
+    "genre": {
+      "type": "enumeration",
+      "enum": [
+        "Action",
+        "Comedy",
+        "Thriller",
+        "Animation",
+        "SciFi"
+      ]
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "movies"
+    },
+    "likes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "likes"
+    }
+  }
+}

@@ -1,6 +1,5 @@
 import httpService from "./httpService";
 import { toast } from "react-toastify";
-import { getCurrentUser } from "./authService";
 const apiEndpoint = `/movies`;
 
 function getUrl(id) {
